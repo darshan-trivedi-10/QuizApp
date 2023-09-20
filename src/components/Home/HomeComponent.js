@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HomeComponent() {
   const emailRef = useRef(null);
+  const navigate = useNavigate();
 
   function checkEmail(email) {
     var filter =
@@ -17,9 +19,10 @@ function HomeComponent() {
   function startQuiz(event) {
     event.preventDefault();
     const user_email = emailRef.current.value;
-    
-    if(checkEmail(user_email)){
-      alert(user_email)
+
+    if (checkEmail(user_email)) {
+      localStorage.setItem("user_email", user_email);
+      navigate("/quiz");
     }
   }
 
